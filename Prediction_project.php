@@ -1,4 +1,6 @@
- Prediction-task-1
+
+ 
+ 
 # Prediction Assignment Writeup 
 library(caret)
  
@@ -33,7 +35,7 @@ trainIndex = createDataPartition(Final_training$classe, p = 0.6, list = FALSE)
 sub_training = Final_training[trainIndex, ]
 sub_testing = Final_training[-trainIndex, ]
 
-# Now the model is trained using only the sub_training data set. Random forest function in caret is applied on the sub_training data where a 5 fold cross validation strategy is used to decrease the risk for overfitting. One could even apply a 10 fold cross validation strategy as the number of observations are huge but that would be a bit more computationally expensive. The number of trees in RF is set to 1000 to increase the stability and strength of the analysis. I choose Random forest as the classifier of choice because it is one of the best in accuracy among current algorithms, it is fast and effective in handeling large data sets with lots of varables and observations. It provides estimates on variables that have the most predictive power in the classification, etc.
+# Now the model is trained using ONLY the sub_training data set. Random forest function in caret is applied on the sub_training data where a 5 fold cross validation strategy is used to decrease the risk for overfitting. One could even apply a 10 fold cross validation strategy as the number of observations are huge but that would be a bit more computationally expensive. The number of trees in RF is set to 1000 to increase the stability and strength of the analysis. I choose Random forest as the classifier of choice because it is one of the best in accuracy among current algorithms, it is fast and effective in handeling large data sets with lots of varables and observations. It provides estimates on variables that have the most predictive power in the classification, etc.
 
 trControl = trainControl(method = "cv", number = 5)
 rf_Model <- train (sub_training$classe ~ ., data=sub_training, method= "rf", ntree = 1000, importance = TRUE, trControl = trControl)
@@ -67,6 +69,6 @@ pml_write_files = function(x){
 Pred_test <- predict(rf_Model, Final_testing)
 Pred_test
 pml_write_files(Pred_test)
-
+ 
  
  
