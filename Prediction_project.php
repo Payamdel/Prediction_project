@@ -67,6 +67,6 @@ pml_write_files = function(x){
 Pred_test <- predict(rf_Model, Final_testing)
 Pred_test
 pml_write_files(Pred_test)
- 
+
  
  
